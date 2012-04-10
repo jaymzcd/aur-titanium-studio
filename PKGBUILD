@@ -1,5 +1,5 @@
-# Maintainer: Sergio Correia (sergio.correia) <sergio.correia@uece.net>
-# Former Maintainer: Shanto <shanto@hotmail.com>
+# Maintainer: Sergio Correia <sergio.correia@uece.net>
+# Contributor: Shanto <shanto@hotmail.com>
 
 pkgname=titanium-studio
 pkgver=2.0.1.201204061639
