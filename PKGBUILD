@@ -3,7 +3,7 @@
 
 pkgname=titanium-studio
 pkgver=2.0.1.201204132053
-pkgrel=1
+pkgrel=2
 pkgdesc="A free and open source application development platform, Titanium lets you create native mobile, tablet and desktop application experiences using existing web skills like Javascript, HTML, CSS, Python, Ruby, and PHP."
 url="http://www.appcelerator.com/products/titanium-studio/"
 arch=('i686' 'x86_64')
@@ -65,6 +65,10 @@ package() {
 
 	install -m644 "${srcdir}/${pkgname}.desktop" "../applications/"
 	ln -sfT "/${_pkgroot}/icon.xpm" "../pixmaps/${pkgname}.xpm"
+
+	# remove problematic rubles
+	rm -rf "${pkgdir}/usr/share/titanium-studio/plugins/com.appcelerator.titanium.core_1.1.0.1333513597/bundles/titanium_desktop.ruble"
+	rm -rf "${pkgdir}/usr/share/titanium-studio/plugins/com.appcelerator.titanium.core_1.1.0.1333513597/bundles/titanium_mobile.ruble"
 
 	cd $pkgdir/${_pkgroot}
 	find ./ -path '*titanium*/window16*.png' -printf "/${_pkgroot}/%P" -quit | xargs -i ln -sf "{}" "../icons/hicolor/16x16/apps/${pkgname}.png"
