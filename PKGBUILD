@@ -2,8 +2,8 @@
 # Contributor: Shanto <shanto@hotmail.com>
 
 pkgname=titanium-studio
-pkgver=2.0.1.201204132053
-pkgrel=2
+pkgver=2.0.2.201205311912
+pkgrel=1
 pkgdesc="A free and open source application development platform, Titanium lets you create native mobile, tablet and desktop application experiences using existing web skills like Javascript, HTML, CSS, Python, Ruby, and PHP."
 url="http://www.appcelerator.com/products/titanium-studio/"
 arch=('i686' 'x86_64')
@@ -32,11 +32,11 @@ _pkgarraysize=${#source[@]}
 
 if [ "$CARCH" = "i686" ]; then
 	source[${_pkgarraysize}]="http://titanium-studio-linux-binaries.googlecode.com/files/titanium.linux.gtk.x86-${pkgver}.zip"
-	md5sums[${_pkgarraysize}]='db9252f6c329798bf69dc1201016855f'
+	md5sums[${_pkgarraysize}]='428a8a620d4b5dfe5664682095bd8399'
 else
 	# x86_64
 	source[${_pkgarraysize}]="http://titanium-studio-linux-binaries.googlecode.com/files/titanium.linux.gtk.x86_64-${pkgver}.zip"
-	md5sums[${_pkgarraysize}]='ebd05e502b8113a194bc4c5b7c99c593'
+	md5sums[${_pkgarraysize}]='9ef9f6c5fdaa9783a1f049299bc7972c'
 
 fi
 
@@ -66,14 +66,13 @@ package() {
 	install -m644 "${srcdir}/${pkgname}.desktop" "../applications/"
 	ln -sfT "/${_pkgroot}/icon.xpm" "../pixmaps/${pkgname}.xpm"
 
-	# remove problematic rubles
-	rm -rf "${pkgdir}/usr/share/titanium-studio/plugins/com.appcelerator.titanium.core_1.1.0.1333513597/bundles/titanium_desktop.ruble"
-	rm -rf "${pkgdir}/usr/share/titanium-studio/plugins/com.appcelerator.titanium.core_1.1.0.1333513597/bundles/titanium_mobile.ruble"
-
 	cd $pkgdir/${_pkgroot}
 	find ./ -path '*titanium*/window16*.png' -printf "/${_pkgroot}/%P" -quit | xargs -i ln -sf "{}" "../icons/hicolor/16x16/apps/${pkgname}.png"
 	find ./ -path '*titanium*/window32*.png' -printf "/${_pkgroot}/%P" -quit | xargs -i ln -sf "{}" "../icons/hicolor/32x32/apps/${pkgname}.png"
 
 	# fix directories permissions
 	find ./ -type d -exec chmod 755 {} \;
+
+	# remove problematic rubles
+	rm -rf "${pkgdir}/usr/share/titanium-studio/plugins/com.appcelerator.titanium.core_1.1.0.1337702423/bundles"
 }
