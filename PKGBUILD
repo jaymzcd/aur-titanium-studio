@@ -35,7 +35,7 @@ if [ "$CARCH" = "i686" ]; then
 else
 	# x86_64
 	source[${_pkgarraysize}]="http://titanium-studio.s3.amazonaws.com/latest/titanium.linux.gtk.x86_64.zip"
-	md5sums[${_pkgarraysize}]='3e173970955a8b7d9827e9cbb71c1a51'
+	md5sums[${_pkgarraysize}]='029d2a32c41c9042a4ae58817ed24df1'
 fi
 
 
